@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://spring.io/guides/gs-producing-web-service" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://spring.io/guides/gs-producing-web-service" targetNamespace="http://spring.io/guides/gs-producing-web-service">
+  <wsdl:types>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://spring.io/guides/gs-producing-web-service">
+
+    <xs:element name="getCustomerByIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getCustomerByIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="customer" type="tns:customer"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="customer">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="firstName" type="xs:string"/>
+            <xs:element name="lastName" type="xs:string"/>
+            <xs:element name="salary" type="xs:long"/>
+            <xs:element name="city" type="xs:string"/>
+            <xs:element name="country" type="xs:string"/>
+            <xs:element name="email" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="getAllCustomersRequest">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="getAllCustomersResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="customer" type="tns:customer"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="serviceStatus">
+        <xs:sequence>
+            <xs:element name="statusCode" type="xs:string"/>
+            <xs:element name="message" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="addCustomerRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+                <xs:element name="firstName" type="xs:string"/>
+                <xs:element name="lastName" type="xs:string"/>
+                <xs:element name="salary" type="xs:long"/>
+                <xs:element name="city" type="xs:string"/>
+                <xs:element name="country" type="xs:string"/>
+                <xs:element name="email" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="addCustomerResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="serviceStatus" type="tns:serviceStatus"/>
+                <xs:element name="customer" type="tns:customer"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="updateCustomerRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+                <xs:element name="firstName" type="xs:string"/>
+                <xs:element name="lastName" type="xs:string"/>
+                <xs:element name="salary" type="xs:long"/>
+                <xs:element name="city" type="xs:string"/>
+                <xs:element name="country" type="xs:string"/>
+                <xs:element name="email" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="updateCustomerResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="serviceStatus" type="tns:serviceStatus"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="deleteCustomerRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="deleteCustomerResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="serviceStatus" type="tns:serviceStatus"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getImageRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="imageName" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getImageResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="serviceStatus" type="tns:serviceStatus"/>
+                <xs:element name="image" type="xs:base64Binary"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getCustomerByIdResponse">
+    <wsdl:part element="tns:getCustomerByIdResponse" name="getCustomerByIdResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteCustomerResponse">
+    <wsdl:part element="tns:deleteCustomerResponse" name="deleteCustomerResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addCustomerRequest">
+    <wsdl:part element="tns:addCustomerRequest" name="addCustomerRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCustomerByIdRequest">
+    <wsdl:part element="tns:getCustomerByIdRequest" name="getCustomerByIdRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateCustomerRequest">
+    <wsdl:part element="tns:updateCustomerRequest" name="updateCustomerRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateCustomerResponse">
+    <wsdl:part element="tns:updateCustomerResponse" name="updateCustomerResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteCustomerRequest">
+    <wsdl:part element="tns:deleteCustomerRequest" name="deleteCustomerRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addCustomerResponse">
+    <wsdl:part element="tns:addCustomerResponse" name="addCustomerResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllCustomersRequest">
+    <wsdl:part element="tns:getAllCustomersRequest" name="getAllCustomersRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllCustomersResponse">
+    <wsdl:part element="tns:getAllCustomersResponse" name="getAllCustomersResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getImageRequest">
+    <wsdl:part element="tns:getImageRequest" name="getImageRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getImageResponse">
+    <wsdl:part element="tns:getImageResponse" name="getImageResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CustomersPort">
+    <wsdl:operation name="getCustomerById">
+      <wsdl:input message="tns:getCustomerByIdRequest" name="getCustomerByIdRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getCustomerByIdResponse" name="getCustomerByIdResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteCustomer">
+      <wsdl:input message="tns:deleteCustomerRequest" name="deleteCustomerRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteCustomerResponse" name="deleteCustomerResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addCustomer">
+      <wsdl:input message="tns:addCustomerRequest" name="addCustomerRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:addCustomerResponse" name="addCustomerResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateCustomer">
+      <wsdl:input message="tns:updateCustomerRequest" name="updateCustomerRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:updateCustomerResponse" name="updateCustomerResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllCustomers">
+      <wsdl:input message="tns:getAllCustomersRequest" name="getAllCustomersRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getAllCustomersResponse" name="getAllCustomersResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getImage">
+      <wsdl:input message="tns:getImageRequest" name="getImageRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getImageResponse" name="getImageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CustomersPortSoap11" type="tns:CustomersPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getCustomerById">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getCustomerByIdRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getCustomerByIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteCustomer">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="deleteCustomerRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteCustomerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addCustomer">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="addCustomerRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addCustomerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateCustomer">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="updateCustomerRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateCustomerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllCustomers">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getAllCustomersRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllCustomersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getImage">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getImageRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getImageResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CustomersPortService">
+    <wsdl:port binding="tns:CustomersPortSoap11" name="CustomersPortSoap11">
+      <soap:address location="http://192.168.0.34:8081/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
