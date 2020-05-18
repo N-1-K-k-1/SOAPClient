@@ -22,7 +22,7 @@ There are some problem using it with different servers — it is about changing 
 So, there is example of using the client:  
 
  1. #### **Main window**  
- ![enter image description here](imgs/ALLFOUR1.png =500x)
+ ![enter image description here](imgs/main.png =500x)
  
  2. #### **POST REQUEST**  
  After clicking POST REQUEST button you should enter the number of clients.  
