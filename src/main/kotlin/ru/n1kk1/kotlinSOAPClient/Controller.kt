@@ -19,6 +19,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor
 import org.springframework.stereotype.Component
 import ru.n1kk1.kotlinSOAPClient.clientService.*
 import java.io.File
+import java.util.concurrent.TimeUnit
 
 
 @Component
@@ -111,12 +112,11 @@ class Controller {
 
     @FXML
     fun getClick(event: ActionEvent) {
-        responseTime.isVisible = true
-        responseTimeText.isVisible = true
-        minResponse.isVisible = true
-        minResponseText.isVisible = true
-        maxResponse.isVisible = true
-        maxResponseText.isVisible = true
+        enterIdLabel.text = "Enter the number of clients:"
+        enterIdField.text = ""
+        action = 3
+        enterIdField.opacity = 1.0
+        enterIdLabel.opacity = 1.0
         fileSize.isVisible = false
         throughputTest.isVisible = false
         responseThroughput.isVisible = false
@@ -124,59 +124,15 @@ class Controller {
         imageView.image = null
         GetCustomer.unsetResponse()
         TimeCode.unsetCompanion()
-
-        responseTimePerRequest.text = ""
-        responseField.text = ""
-
-        taskExecutor = ThreadPoolTaskExecutor()
-        taskExecutor.corePoolSize = 100
-        taskExecutor.maxPoolSize = 100
-        taskExecutor.setThreadNamePrefix("Thread-")
-        taskExecutor.setAllowCoreThreadTimeOut(true)
-        taskExecutor.setWaitForTasksToCompleteOnShutdown(true)
-        taskExecutor.setAwaitTerminationMillis(5000)
-        taskExecutor.afterPropertiesSet()
-        println("Active threads before cycle: "+taskExecutor.activeCount)
-        for (i in 0 until clientQuantity) {
-            ctx?.getBean(GetCustomer::class.java)?.let { taskExecutor.execute(it) }
-            println("Active threads: "+taskExecutor.activeCount)
-        }
-        Thread.sleep(5000)
-        println("Active threads after cycle: "+taskExecutor.activeCount)
-        taskExecutor.shutdown()
-
-        for(i in 0 until clientQuantity) {
-            responseTimePerRequest.text += TimeCode.responseTimeArr[i]
-        }
-        responseField.text = GetCustomer.response
-        responseTimeText.isVisible = true
-        responseTime.text = "${(TimeCode.responseTimeArrLong.sum()/clientQuantity)}" + " ms"
-        responseTime.fill = Color.ORANGE
-        minResponseText.isVisible = true
-        minResponse.text = TimeCode.responseMin.toString() + " ms"
-        minResponse.fill = Color.GREEN
-        maxResponseText.isVisible = true
-        maxResponse.text = TimeCode.responseMax.toString() + " ms"
-        maxResponse.fill = Color.RED
-        correlationId.text = "CorrelationId is: ${GetCustomer.getCorrId()}"
-
-        val csvWriter = WriteCSV()
-        if (file != null) {
-            csvWriter.writeExistingCsvResponse(file!!.name, "GET", clientQuantity)
-        }
-        else if (file == null) {
-            csvWriter.writeNewCsvResponse("GET", clientQuantity)
-        }
     }
 
     @FXML
     fun updateClick(event: ActionEvent) {
-        responseTime.isVisible = true
-        responseTimeText.isVisible = true
-        minResponse.isVisible = true
-        minResponseText.isVisible = true
-        maxResponse.isVisible = true
-        maxResponseText.isVisible = true
+        enterIdLabel.text = "Enter the number of clients:"
+        enterIdField.text = ""
+        action = 4
+        enterIdField.opacity = 1.0
+        enterIdLabel.opacity = 1.0
         fileSize.isVisible = false
         throughputTest.isVisible = false
         responseThroughput.isVisible = false
@@ -184,59 +140,15 @@ class Controller {
         imageView.image = null
         UpdateCustomer.unsetResponse()
         TimeCode.unsetCompanion()
-
-        responseTimePerRequest.text = ""
-        responseField.text = ""
-
-        taskExecutor = ThreadPoolTaskExecutor()
-        taskExecutor.corePoolSize = 100
-        taskExecutor.maxPoolSize = 100
-        taskExecutor.setThreadNamePrefix("Thread-")
-        taskExecutor.setAllowCoreThreadTimeOut(true)
-        taskExecutor.setWaitForTasksToCompleteOnShutdown(true)
-        taskExecutor.setAwaitTerminationMillis(5000)
-        taskExecutor.afterPropertiesSet()
-        println("Active threads before cycle: "+taskExecutor.activeCount)
-        for (i in 0 until clientQuantity) {
-            ctx?.getBean(UpdateCustomer::class.java)?.let { taskExecutor.execute(it) }
-            println("Active threads: "+taskExecutor.activeCount)
-        }
-        Thread.sleep(5000)
-        println("Active threads after cycle: "+taskExecutor.activeCount)
-        taskExecutor.shutdown()
-
-        for(i in 0 until clientQuantity) {
-            responseTimePerRequest.text += TimeCode.responseTimeArr[i]
-        }
-        responseField.text = UpdateCustomer.response
-        responseTimeText.isVisible = true
-        responseTime.text = "${(TimeCode.responseTimeArrLong.sum()/clientQuantity)}" + " ms"
-        responseTime.fill = Color.ORANGE
-        minResponseText.isVisible = true
-        minResponse.text = TimeCode.responseMin.toString() + " ms"
-        minResponse.fill = Color.GREEN
-        maxResponseText.isVisible = true
-        maxResponse.text = TimeCode.responseMax.toString() + " ms"
-        maxResponse.fill = Color.RED
-        correlationId.text = "CorrelationId is: ${UpdateCustomer.getCorrId()}"
-
-        val csvWriter = WriteCSV()
-        if (file != null) {
-            csvWriter.writeExistingCsvResponse(file!!.name, "PUT", clientQuantity)
-        }
-        else if (file == null) {
-            csvWriter.writeNewCsvResponse("PUT", clientQuantity)
-        }
     }
 
     @FXML
     fun deleteClick(event: ActionEvent) {
-        responseTime.isVisible = true
-        responseTimeText.isVisible = true
-        minResponse.isVisible = true
-        minResponseText.isVisible = true
-        maxResponse.isVisible = true
-        maxResponseText.isVisible = true
+        enterIdLabel.text = "Enter the number of clients:"
+        enterIdField.text = ""
+        action = 5
+        enterIdField.opacity = 1.0
+        enterIdLabel.opacity = 1.0
         fileSize.isVisible = false
         throughputTest.isVisible = false
         responseThroughput.isVisible = false
@@ -244,49 +156,6 @@ class Controller {
         imageView.image = null
         DeleteCustomer.unsetResponse()
         TimeCode.unsetCompanion()
-
-        responseTimePerRequest.text = ""
-        responseField.text = ""
-
-        taskExecutor = ThreadPoolTaskExecutor()
-        taskExecutor.corePoolSize = 100
-        taskExecutor.maxPoolSize = 100
-        taskExecutor.setThreadNamePrefix("Thread-")
-        taskExecutor.setAllowCoreThreadTimeOut(true)
-        taskExecutor.setWaitForTasksToCompleteOnShutdown(true)
-        taskExecutor.setAwaitTerminationMillis(5000)
-        taskExecutor.afterPropertiesSet()
-        println("Active threads before cycle: "+taskExecutor.activeCount)
-        for (i in 0 until clientQuantity) {
-            ctx?.getBean(DeleteCustomer::class.java)?.let { taskExecutor.execute(it) }
-            println("Active threads: "+taskExecutor.activeCount)
-        }
-        Thread.sleep(5000)
-        println("Active threads after cycle: "+taskExecutor.activeCount)
-        taskExecutor.shutdown()
-
-        for(i in 0 until clientQuantity) {
-            responseTimePerRequest.text += TimeCode.responseTimeArr[i]
-        }
-        responseField.text = DeleteCustomer.response
-        responseTimeText.isVisible = true
-        responseTime.text = "${(TimeCode.responseTimeArrLong.sum()/clientQuantity)}" + " ms"
-        responseTime.fill = Color.ORANGE
-        minResponseText.isVisible = true
-        minResponse.text = TimeCode.responseMin.toString() + " ms"
-        minResponse.fill = Color.GREEN
-        maxResponseText.isVisible = true
-        maxResponse.text = TimeCode.responseMax.toString() + " ms"
-        maxResponse.fill = Color.RED
-        correlationId.text = "CorrelationId is: ${DeleteCustomer.getCorrId()}"
-
-        val csvWriter = WriteCSV()
-        if (file != null) {
-            csvWriter.writeExistingCsvResponse(file!!.name, "DELETE", clientQuantity)
-        }
-        else if (file == null) {
-            csvWriter.writeNewCsvResponse("DELETE", clientQuantity)
-        }
     }
 
     @FXML
@@ -339,7 +208,7 @@ class Controller {
         minResponseText.isVisible = false
         maxResponse.isVisible = false
         maxResponseText.isVisible = false
-        action = 3
+        action = 6
         enterIdField.opacity = 1.0
         enterIdLabel.opacity = 1.0
         enterIdLabel.text = "Enter file name:"
@@ -360,28 +229,34 @@ class Controller {
                 clientQuantity = enterIdField.text.toInt()
 
                 taskExecutor = ThreadPoolTaskExecutor()
-                taskExecutor.corePoolSize = 100
-                taskExecutor.maxPoolSize = 100
+                taskExecutor.corePoolSize = enterIdField.text.toInt()
+                taskExecutor.maxPoolSize = enterIdField.text.toInt()
                 taskExecutor.setThreadNamePrefix("Thread-")
-                taskExecutor.setAllowCoreThreadTimeOut(true)
-                taskExecutor.setWaitForTasksToCompleteOnShutdown(true)
-                taskExecutor.setAwaitTerminationMillis(5000)
                 taskExecutor.afterPropertiesSet()
                 println("Active threads before cycle: "+taskExecutor.activeCount)
                 for (i in 0 until clientQuantity) {
                     ctx?.getBean(PostCustomer::class.java)?.let { taskExecutor.execute(it) }
-                    println("Active threads: "+taskExecutor.activeCount)
                 }
-                Thread.sleep(5000)
-                println("Active threads after cycle: "+taskExecutor.activeCount)
-                taskExecutor.shutdown()
+                while (taskExecutor.threadPoolExecutor.taskCount != taskExecutor.threadPoolExecutor.completedTaskCount) {
+                    try {
+                        println("Active = " + taskExecutor.threadPoolExecutor.activeCount + "" +
+                                "\n Completed = " + taskExecutor.threadPoolExecutor.completedTaskCount)
+                        Thread.sleep(500)
+                    } catch (e: InterruptedException) {
+                        e.printStackTrace()
+                    }
+                }
 
-                for(i in 0 until clientQuantity) {
+                taskExecutor.threadPoolExecutor.shutdown()
+                taskExecutor.threadPoolExecutor.awaitTermination(60, TimeUnit.SECONDS)
+                println("Active threads after cycle: " + taskExecutor.activeCount)
+
+                for(i in 0 until TimeCode.responseTimeArr.size) {
                     responseTimePerRequest.text += TimeCode.responseTimeArr[i]
                 }
                 responseField.text = PostCustomer.response
                 responseTimeText.isVisible = true
-                responseTime.text = "${(TimeCode.responseTimeArrLong.sum()/clientQuantity)}" + " ms"
+                responseTime.text = "${(TimeCode.responseTimeArrLong.sum()/TimeCode.responseTimeArr.size)}" + " ms"
                 responseTime.fill = Color.ORANGE
                 minResponseText.isVisible = true
                 minResponse.text = TimeCode.responseMin.toString() + " ms"
@@ -411,28 +286,35 @@ class Controller {
                 clientQuantity = enterIdField.text.toInt()
 
                 taskExecutor = ThreadPoolTaskExecutor()
-                taskExecutor.corePoolSize = 100
-                taskExecutor.maxPoolSize = 100
+                taskExecutor.corePoolSize = enterIdField.text.toInt()
+                taskExecutor.maxPoolSize = enterIdField.text.toInt()
                 taskExecutor.setThreadNamePrefix("Thread-")
-                taskExecutor.setAllowCoreThreadTimeOut(true)
-                taskExecutor.setWaitForTasksToCompleteOnShutdown(true)
-                taskExecutor.setAwaitTerminationMillis(5000)
                 taskExecutor.afterPropertiesSet()
                 println("Active threads before cycle: "+taskExecutor.activeCount)
                 for (i in 0 until clientQuantity) {
                     ctx?.getBean(All4Requests::class.java)?.let { taskExecutor.execute(it) }
-                    println("Active threads: "+taskExecutor.activeCount)
                 }
-                Thread.sleep(5000)
-                println("Active threads after cycle: "+taskExecutor.activeCount)
-                taskExecutor.shutdown()
 
-                for(i in 0 until clientQuantity) {
+                while (taskExecutor.threadPoolExecutor.taskCount != taskExecutor.threadPoolExecutor.completedTaskCount) {
+                    try {
+                        println("Active = " + taskExecutor.threadPoolExecutor.activeCount + "" +
+                                "\n Completed = " + taskExecutor.threadPoolExecutor.completedTaskCount)
+                        Thread.sleep(500)
+                    } catch (e: InterruptedException) {
+                        e.printStackTrace()
+                    }
+                }
+
+                taskExecutor.threadPoolExecutor.shutdown()
+                taskExecutor.threadPoolExecutor.awaitTermination(60, TimeUnit.SECONDS)
+                println("Active threads after cycle: " + taskExecutor.activeCount)
+
+                for(i in 0 until TimeCode.responseTimeArr.size) {
                     responseTimePerRequest.text += TimeCode.responseTimeArr[i]
                 }
                 responseField.text = All4Requests.response
                 responseTimeText.isVisible = true
-                responseTime.text = "${(TimeCode.responseTimeArrLong.sum()/clientQuantity)}" + " ms"
+                responseTime.text = "${(TimeCode.responseTimeArrLong.sum()/TimeCode.responseTimeArr.size)}" + " ms"
                 responseTime.fill = Color.ORANGE
                 minResponseText.isVisible = true
                 minResponse.text = TimeCode.responseMin.toString() + " ms"
@@ -451,6 +333,180 @@ class Controller {
                 }
             }
             3 -> {
+                responseTime.isVisible = true
+                responseTimeText.isVisible = true
+                minResponse.isVisible = true
+                minResponseText.isVisible = true
+                maxResponse.isVisible = true
+                maxResponseText.isVisible = true
+                responseTimePerRequest.text = ""
+                responseField.text = ""
+                clientQuantity = enterIdField.text.toInt()
+
+                taskExecutor = ThreadPoolTaskExecutor()
+                taskExecutor.corePoolSize = enterIdField.text.toInt()
+                taskExecutor.maxPoolSize = enterIdField.text.toInt()
+                taskExecutor.setThreadNamePrefix("Thread-")
+                taskExecutor.afterPropertiesSet()
+                println("Active threads before cycle: "+taskExecutor.activeCount)
+                for (i in 0 until clientQuantity) {
+                    ctx?.getBean(GetCustomer::class.java)?.let { taskExecutor.execute(it) }
+                }
+
+                while (taskExecutor.threadPoolExecutor.taskCount != taskExecutor.threadPoolExecutor.completedTaskCount) {
+                    try {
+                        println("Active = " + taskExecutor.threadPoolExecutor.activeCount + "" +
+                                "\n Completed = " + taskExecutor.threadPoolExecutor.completedTaskCount)
+                        Thread.sleep(500)
+                    } catch (e: InterruptedException) {
+                        e.printStackTrace()
+                    }
+                }
+
+                taskExecutor.threadPoolExecutor.shutdown()
+                taskExecutor.threadPoolExecutor.awaitTermination(60, TimeUnit.SECONDS)
+                println("Active threads after cycle: " + taskExecutor.activeCount)
+
+                for(i in 0 until TimeCode.responseTimeArr.size) {
+                    responseTimePerRequest.text += TimeCode.responseTimeArr[i]
+                }
+                responseField.text = GetCustomer.response
+                responseTimeText.isVisible = true
+                responseTime.text = "${(TimeCode.responseTimeArrLong.sum()/TimeCode.responseTimeArr.size)}" + " ms"
+                responseTime.fill = Color.ORANGE
+                minResponseText.isVisible = true
+                minResponse.text = TimeCode.responseMin.toString() + " ms"
+                minResponse.fill = Color.GREEN
+                maxResponseText.isVisible = true
+                maxResponse.text = TimeCode.responseMax.toString() + " ms"
+                maxResponse.fill = Color.RED
+                correlationId.text = "CorrelationId is: ${GetCustomer.getCorrId()}"
+
+                val csvWriter = WriteCSV()
+                if (file != null) {
+                    csvWriter.writeExistingCsvResponse(file!!.name, "GET", clientQuantity)
+                }
+                else if (file == null) {
+                    csvWriter.writeNewCsvResponse("GET", clientQuantity)
+                }
+            }
+            4 -> {
+                responseTime.isVisible = true
+                responseTimeText.isVisible = true
+                minResponse.isVisible = true
+                minResponseText.isVisible = true
+                maxResponse.isVisible = true
+                maxResponseText.isVisible = true
+                responseTimePerRequest.text = ""
+                responseField.text = ""
+                clientQuantity = enterIdField.text.toInt()
+
+                taskExecutor = ThreadPoolTaskExecutor()
+                taskExecutor.corePoolSize = enterIdField.text.toInt()
+                taskExecutor.maxPoolSize = enterIdField.text.toInt()
+                taskExecutor.setThreadNamePrefix("Thread-")
+                taskExecutor.afterPropertiesSet()
+                println("Active threads before cycle: "+taskExecutor.activeCount)
+                for (i in 0 until clientQuantity) {
+                    ctx?.getBean(UpdateCustomer::class.java)?.let { taskExecutor.execute(it) }
+                }
+
+                while (taskExecutor.threadPoolExecutor.taskCount != taskExecutor.threadPoolExecutor.completedTaskCount) {
+                    try {
+                        println("Active = " + taskExecutor.threadPoolExecutor.activeCount + "" +
+                                "\n Completed = " + taskExecutor.threadPoolExecutor.completedTaskCount)
+                        Thread.sleep(500)
+                    } catch (e: InterruptedException) {
+                        e.printStackTrace()
+                    }
+                }
+
+                taskExecutor.threadPoolExecutor.shutdown()
+                taskExecutor.threadPoolExecutor.awaitTermination(60, TimeUnit.SECONDS)
+                println("Active threads after cycle: " + taskExecutor.activeCount)
+
+                for(i in 0 until TimeCode.responseTimeArr.size) {
+                    responseTimePerRequest.text += TimeCode.responseTimeArr[i]
+                }
+                responseField.text = UpdateCustomer.response
+                responseTimeText.isVisible = true
+                responseTime.text = "${(TimeCode.responseTimeArrLong.sum()/TimeCode.responseTimeArr.size)}" + " ms"
+                responseTime.fill = Color.ORANGE
+                minResponseText.isVisible = true
+                minResponse.text = TimeCode.responseMin.toString() + " ms"
+                minResponse.fill = Color.GREEN
+                maxResponseText.isVisible = true
+                maxResponse.text = TimeCode.responseMax.toString() + " ms"
+                maxResponse.fill = Color.RED
+                correlationId.text = "CorrelationId is: ${UpdateCustomer.getCorrId()}"
+
+                val csvWriter = WriteCSV()
+                if (file != null) {
+                    csvWriter.writeExistingCsvResponse(file!!.name, "PUT", clientQuantity)
+                }
+                else if (file == null) {
+                    csvWriter.writeNewCsvResponse("PUT", clientQuantity)
+                }
+            }
+            5 -> {
+                responseTime.isVisible = true
+                responseTimeText.isVisible = true
+                minResponse.isVisible = true
+                minResponseText.isVisible = true
+                maxResponse.isVisible = true
+                maxResponseText.isVisible = true
+                responseTimePerRequest.text = ""
+                responseField.text = ""
+                clientQuantity = enterIdField.text.toInt()
+
+                taskExecutor = ThreadPoolTaskExecutor()
+                taskExecutor.corePoolSize = enterIdField.text.toInt()
+                taskExecutor.maxPoolSize = enterIdField.text.toInt()
+                taskExecutor.setThreadNamePrefix("Thread-")
+                taskExecutor.afterPropertiesSet()
+                println("Active threads before cycle: "+taskExecutor.activeCount)
+                for (i in 0 until clientQuantity) {
+                    ctx?.getBean(DeleteCustomer::class.java)?.let { taskExecutor.execute(it) }
+                }
+
+                while (taskExecutor.threadPoolExecutor.taskCount != taskExecutor.threadPoolExecutor.completedTaskCount) {
+                    try {
+                        println("Active = " + taskExecutor.threadPoolExecutor.activeCount + "" +
+                                "\n Completed = " + taskExecutor.threadPoolExecutor.completedTaskCount)
+                        Thread.sleep(500)
+                    } catch (e: InterruptedException) {
+                        e.printStackTrace()
+                    }
+                }
+
+                taskExecutor.threadPoolExecutor.shutdown()
+                taskExecutor.threadPoolExecutor.awaitTermination(60, TimeUnit.SECONDS)
+                println("Active threads after cycle: " + taskExecutor.activeCount)
+
+                for(i in 0 until TimeCode.responseTimeArr.size) {
+                    responseTimePerRequest.text += TimeCode.responseTimeArr[i]
+                }
+                responseField.text = DeleteCustomer.response
+                responseTimeText.isVisible = true
+                responseTime.text = "${(TimeCode.responseTimeArrLong.sum()/TimeCode.responseTimeArr.size)}" + " ms"
+                responseTime.fill = Color.ORANGE
+                minResponseText.isVisible = true
+                minResponse.text = TimeCode.responseMin.toString() + " ms"
+                minResponse.fill = Color.GREEN
+                maxResponseText.isVisible = true
+                maxResponse.text = TimeCode.responseMax.toString() + " ms"
+                maxResponse.fill = Color.RED
+                correlationId.text = "CorrelationId is: ${DeleteCustomer.getCorrId()}"
+
+                val csvWriter = WriteCSV()
+                if (file != null) {
+                    csvWriter.writeExistingCsvResponse(file!!.name, "DELETE", clientQuantity)
+                }
+                else if (file == null) {
+                    csvWriter.writeNewCsvResponse("DELETE", clientQuantity)
+                }
+            }
+            6 -> {
                 fileSize.isVisible = true
                 throughputTest.isVisible = true
                 responseThroughput.isVisible = true

@@ -11,7 +11,7 @@ import java.util.logging.Logger
 
 @Component
 @Scope("prototype")
-class PostCustomer : Runnable {
+class PostCustomer: Runnable {
     @Autowired
     val quoteClient: CustomerClient = CustomerClient()
 
@@ -27,6 +27,7 @@ class PostCustomer : Runnable {
     fun postCustomer(correlationId: Int) {
         Logger.getAnonymousLogger().info("POST@" + Date().time + " for correlationId = " + correlationId + " from " + Thread.currentThread().name)
         response = correlationId.let { quoteClient.addCustomer(it.toLong()) }.serviceStatus.message + "\n" + response
+        println("ResponseArrSize: " + TimeCode.responseTimeArr.size)
         Logger.getAnonymousLogger().info("EXIT POST@" + Date().time + " for correlationId = " + correlationId +  " from " + Thread.currentThread().name)
         println("Response time for correlationId = $correlationId is ${TimeCode.responseTime} ms")
     }

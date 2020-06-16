@@ -6,8 +6,10 @@ import org.springframework.ws.soap.client.core.SoapActionCallback
 import ru.n1kk1.kotlinSOAPClient.wsdl.*
 
 class CustomerClient : WebServiceGatewaySupport() {
-    private val uri = "http://192.168.0.34:8081/ws"
+    private val uri = "http://192.168.0.83:8081/ws"
     private val timeCode: TimeCode = TimeCode()
+
+    private val thread: ArrayList<Long> = ArrayList()
 
     fun getCustomer(id: Long): GetCustomerByIdResponse {
         log.info("\nRequesting customer with id = $id")
@@ -80,7 +82,8 @@ class CustomerClient : WebServiceGatewaySupport() {
     }
 
     fun addCustomer(id: Long): AddCustomerResponse {
-        log.info("\nAdding a new customer")
+        thread.add(Thread.currentThread().id)
+        println(thread.size)
         return timeCode.timeIt {
             val request = AddCustomerRequest()
             request.id = id
@@ -90,6 +93,7 @@ class CustomerClient : WebServiceGatewaySupport() {
             request.city = "San-Francisco"
             request.country = "USA"
             request.email = "AlexMfld123@gmail.com"
+            log.info("\n${Thread.currentThread().name} adding a new customer")
             webServiceTemplate
                     .marshalSendAndReceive(uri, request,
                             SoapActionCallback(

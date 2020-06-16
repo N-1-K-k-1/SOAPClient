@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.oxm.jaxb.Jaxb2Marshaller
 import org.springframework.scheduling.annotation.EnableAsync
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor
+import java.util.concurrent.CountDownLatch
 
 
 @Configuration
@@ -22,7 +23,7 @@ class Config {
     @Bean
     fun customerClient(marshaller: Jaxb2Marshaller): CustomerClient {
         val client = CustomerClient()
-        client.defaultUri = "http://192.168.0.34:8081/ws"
+        client.defaultUri = "http://192.168.0.83:8081/ws"
         client.marshaller = marshaller
         client.unmarshaller = marshaller
         return client
