@@ -40,9 +40,9 @@ So, there is example of using the client:
  ![enter image description here](imgs/DELETE.png =500x)  
 
  6. #### **ALL 4 REQUESTS**  
- When you push ALL 4 REQUESTS button you need to enter the number of clients again, because this button executes all previous requests together.  
+ This button executes all previous requests together.  
  ![enter image description here](imgs/ALLFOUR1.png =500x)  
- After that, press ENTER and you will see response time of the four requests and response of the last (DELETE) request.  
+ Press ENTER and you will see response time of the four requests and response of the last (DELETE) request.  
  ![enter image description here](imgs/ALLFOUR2.png =500x)  
 
  7. #### **Unset correlationId**  
