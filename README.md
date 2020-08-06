@@ -1,16 +1,16 @@
 ## Table of Contents
 
-- [Quick start guide: how to use client.](#markdown-header-quick-start-guide-how-to-use-client)  
-  1. [Main window](#markdown-header-main-window)  
-  2. [POST REQUEST](#markdown-header-post-request)  
-  3. [GET REQUEST](#markdown-header-get-request)  
-  4. [UPDATE REQUEST](#markdown-header-update-request)  
-  5. [DELETE REQUEST](#markdown-header-delete-request)  
-  6. [ALL 4 REQUESTS](#markdown-header-all-4-requests)  
-  7. [Unset correlationId](#markdown-header-unset-correlationid)  
-  8. [Test throughput](#markdown-header-test-throughput)  
-  9. [Choose CSV FILE, Reset opened file](#markdown-header-choose-csv-file-reset-opened-file)  
-- [Build and run application](#markdown-header-build-and-run-application)
+- [Quick start guide: how to use client.](#quick-start-guide-how-to-use-client)  
+  1.[Main window](#main-window)  
+  2.[POST REQUEST](#post-request)  
+  3.[GET REQUEST](#get-request)  
+  4.[UPDATE REQUEST](#update-request)  
+  5.[DELETE REQUEST](#delete-request)  
+  6.[ALL 4 REQUESTS](#all-4-requests)  
+  7.[Unset correlationId](#unset-correlationid)  
+  8.[Test throughput](#test-throughput)  
+  9.[Choose CSV FILE, Reset opened file](#choose-csv-file-reset-opened-file)  
+- [Build and run application](#build-and-run-application)
 
 ## Quick start guide: how to use client
 
