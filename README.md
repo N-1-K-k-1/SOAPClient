@@ -26,7 +26,7 @@ So, there is example of using the client:
  
  2. #### **POST REQUEST**  
  After clicking POST REQUEST button you should enter the number of clients.  
- ![enter image description here](imgs/POST1.png =500x)  
+ ![enter image description here](https://bytebucket.org/N1Kk1/kotlinsoapclient/raw/ec141e3eda7e73941457d73621e7d9903a0fbc74/imgs/imgs/POST1.png =500x)  
  Then, push to the ENTER and you will see the response and the time of the response.  
  ![enter image description here](imgs/POST2.png =500x)
 
