@@ -22,42 +22,43 @@ There are some problem using it with different servers — it is about changing 
 So, there is example of using the client:  
 
  1. #### **Main window**  
- ![enter image description here](imgs/main.png =500x)
+ ![enter image description here](https://bytebucket.org/N1Kk1/kotlinsoapclient/raw/ec141e3eda7e73941457d73621e7d9903a0fbc74/imgs/main.png)  
  
  2. #### **POST REQUEST**  
- After clicking POST REQUEST button you should enter the number of clients.  
- ![enter image description here](https://bytebucket.org/N1Kk1/kotlinsoapclient/raw/ec141e3eda7e73941457d73621e7d9903a0fbc74/imgs/imgs/POST1.png =500x)  
+ After clicking POST REQUEST button you should enter the number of clients. 
+ ![enter image description here](https://bytebucket.org/N1Kk1/kotlinsoapclient/raw/ec141e3eda7e73941457d73621e7d9903a0fbc74/imgs/POST1.png)  
+ 
  Then, push to the ENTER and you will see the response and the time of the response.  
- ![enter image description here](imgs/POST2.png =500x)
+ ![enter image description here](https://bytebucket.org/N1Kk1/kotlinsoapclient/raw/ec141e3eda7e73941457d73621e7d9903a0fbc74/imgs/POST2.png)
 
  3. #### **GET REQUEST**  
- ![enter image description here](imgs/GET.png =500x)
+ ![enter image description here](https://bytebucket.org/N1Kk1/kotlinsoapclient/raw/ec141e3eda7e73941457d73621e7d9903a0fbc74/imgs/GET.png)
 
  4. #### **UPDATE REQUEST**  
- ![enter image description here](imgs/UPDATE.png =500x)  
+ ![enter image description here](https://bytebucket.org/N1Kk1/kotlinsoapclient/raw/ec141e3eda7e73941457d73621e7d9903a0fbc74/imgs/UPDATE.png)  
 
  5. #### **DELETE REQUEST**  
- ![enter image description here](imgs/DELETE.png =500x)  
+ ![enter image description here](https://bytebucket.org/N1Kk1/kotlinsoapclient/raw/ec141e3eda7e73941457d73621e7d9903a0fbc74/imgs/DELETE.png)  
 
  6. #### **ALL 4 REQUESTS**  
  This button executes all previous requests together.  
- ![enter image description here](imgs/ALLFOUR1.png =500x)  
+ ![enter image description here](https://bytebucket.org/N1Kk1/kotlinsoapclient/raw/ec141e3eda7e73941457d73621e7d9903a0fbc74/imgs/ALLFOUR1.png)  
  Press ENTER and you will see response time of the four requests and response of the last (DELETE) request.  
- ![enter image description here](imgs/ALLFOUR2.png =500x)  
+ ![enter image description here](https://bytebucket.org/N1Kk1/kotlinsoapclient/raw/ec141e3eda7e73941457d73621e7d9903a0fbc74/imgs/ALLFOUR2.png)  
 
  7. #### **Unset correlationId**  
  If you want, you can reset the correlationId.  
- ![enter image description here](imgs/UNSETCORRID.png =500x)  
+ ![enter image description here](https://bytebucket.org/N1Kk1/kotlinsoapclient/raw/ec141e3eda7e73941457d73621e7d9903a0fbc74/imgs/UNSETCORRID.png)  
 
  8. #### **Test throughput**  
  After you press this button you need to enter the file name.  
- ![enter image description here](imgs/TESTTHROUGHPUT1.png =500x)  
+ ![enter image description here](https://bytebucket.org/N1Kk1/kotlinsoapclient/raw/ec141e3eda7e73941457d73621e7d9903a0fbc74/imgs/TESTTHROUGHPUT1.png)  
  Then push enter and you will see the received image, its size, response time and throughput. Measurement results will be saved to TestThroughput.csv file.  
- ![enter image description here](imgs/TESTTHROUGHPUT2.png =500x)  
+ ![enter image description here](https://bytebucket.org/N1Kk1/kotlinsoapclient/raw/ec141e3eda7e73941457d73621e7d9903a0fbc74/imgs/TESTTHROUGHPUT2.png)  
  
  9. #### **Choose CSV file, Reset opened file**  
  When you want to save the measurement results to the existing file, you need to open this file.  
- ![enter image description here](imgs/CHOOSEFILE.png =500x)  
+ ![enter image description here](https://bytebucket.org/N1Kk1/kotlinsoapclient/raw/ec141e3eda7e73941457d73621e7d9903a0fbc74/imgs/CHOOSEFILE.png)  
  And if you want to save results to the new file press the Reset opened file button.  
 
 ## Build and run application
